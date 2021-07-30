@@ -12,4 +12,6 @@ int read_file(char *filepath, char **content);
 
 int my_isnum(char *);
 
+char **my_str_to_word_array(char *str, char *dlm);
+
 #endif /* !LIB_H_ */

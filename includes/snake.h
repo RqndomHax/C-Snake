@@ -13,6 +13,7 @@
 
 typedef struct snake_s
 {
+    int display;
     int fps;
     int size;
     int booster;
@@ -20,10 +21,13 @@ typedef struct snake_s
     char *content;
     char *config_path;
     char **argv;
-    int argc;
 }snake_t;
 
+void init_setup(snake_t *snake, char **argv);
+
 int parse_config(snake_t *snake);
+
+int show_help(void);
 
 int parse_args(snake_t *snake);
 

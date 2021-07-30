@@ -10,7 +10,7 @@
 #include "../../includes/snake.h"
 #include "../../includes/lib.h"
 
-int show_help()
+int show_help(void)
 {
     printf("%s",
         "Snake game made in C\n"
@@ -21,12 +21,15 @@ int show_help()
         "  size: 4 # This is the default snake size\n"
         "  booster: 1 # This is the size gained by the snake when it eats\n"
         "  arena_size: 20 # This is the size of the arena (20 = 20x20)\n"
+        "  display: ncurse # This is the type of display of the game (ncurse / sfml))\n"
     
         "\n[Commands]\n"
         "  --fps n # sets the fps cap\n"
         "  --size n # sets the snake's size\n"
         "  --booster n # sets the size multiplier\n"
         "  --arena n # sets the arena's size\n"
+        "  --ncurse # sets the display's type to ncurse\n"
+        "  --sfml # sets the display's type to sfml\n"
         
         "\nCommands overwrite the parameters of the config !\n");
     return (0);
@@ -42,7 +45,7 @@ static int replace_value(char **value, int *target)
     }
     *target = atoi((*value));
     if (*target <= 0) {
-        fprintf(stderr, "Value of '%s' cannot be fewer than 1\n", *(value - 1));
+        fprintf(stderr, "Value of '%s' must be greater than 0.\n", *(value - 1));
         return (-2);
     }
     return (1);
@@ -58,6 +61,14 @@ int is_command(snake_t *snake, int *index)
         return (replace_value(&snake->argv[++(*index)], &snake->booster));
     if (strcmp(snake->argv[(*index)], "--arena") == 0)
         return (replace_value(&snake->argv[++(*index)], &snake->arena));
+    if (strcmp(snake->argv[(*index)], "--ncurse") == 0) {
+        snake->display = 0;
+        return (1);
+    }
+    if (strcmp(snake->argv[(*index)], "--sfml") == 0) {
+        snake->display = 1;
+        return (1);
+    }
     if (strncmp("--", snake->argv[(*index)], 2) == 0) {
         fprintf(stderr, "Invalid command '%s' !\n", snake->argv[(*index)]);
         return (-2);

@@ -12,13 +12,16 @@ int main(int argc, char **argv)
 {
     snake_t snake;
 
-    snake.argv = argv;
-    snake.argc = argc;
-    snake.content = NULL;
-    snake.config_path = NULL;
+    if (argc == 1)
+        return (show_help());
+    init_setup(&snake, argv);
     if (!parse_args(&snake))
         return (1);
-    if (!read_file(argv[1], &snake.content))
-        return (1);
+    if (snake.config_path != NULL) {
+        if (!read_file(argv[1], &snake.content))
+            return (1);
+        printf("[%s]\n", snake.content);
+        free(snake.content);
+    }
     return (0);
 }

@@ -11,6 +11,20 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int parse_args(int argc, char **argv);
+typedef struct snake_s
+{
+    int fps;
+    int size;
+    int booster;
+    int arena;
+    char *content;
+    char *config_path;
+    char **argv;
+    int argc;
+}snake_t;
+
+int parse_config(snake_t *snake);
+
+int parse_args(snake_t *snake);
 
 #endif /* !SNAKE_H_ */

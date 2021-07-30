@@ -14,6 +14,7 @@ CFLAGS 	+= -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio
 CC		= gcc
 
 SRC		= $(wildcard src/*.c)
+SRC		+= $(wildcard src/utils/*.c)
 
 LIBSRC	= $(wildcard lib/*.c)
 
@@ -21,7 +22,7 @@ OBJ		= $(SRC:.c=.o)
 
 LIBOBJ 	= $(LIBSRC:.c=.o)
 
-OUT		= snake
+OUT		= c_snake
 
 LIB		= lib/libmy.a
 

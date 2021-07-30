@@ -5,7 +5,7 @@
 ** main
 */
 
-#include "includes/snake.h"
+#include "../includes/snake.h"
 
 int main(int argc, char **argv)
 {

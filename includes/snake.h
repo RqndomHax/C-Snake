@@ -13,5 +13,4 @@
 
 int parse_args(int argc, char **argv);
 
-
 #endif /* !SNAKE_H_ */

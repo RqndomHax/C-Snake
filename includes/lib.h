@@ -8,6 +8,8 @@
 #ifndef LIB_H_
 #define LIB_H_
 
+void free_array(char **array);
+
 int read_file(char *filepath, char **content);
 
 int my_isnum(char *);

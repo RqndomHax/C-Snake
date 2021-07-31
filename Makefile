@@ -9,6 +9,8 @@ CFLAGS 	= -Llib -lmy
 
 CFLAGS += -W -Wall -Wextra
 
+CFLAGS += -g -g3
+
 CFLAGS 	+= -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio
 
 CC		= gcc

@@ -20,8 +20,11 @@ int main(int argc, char **argv)
     if (snake.config_path != NULL) {
         if (!read_file(argv[1], &snake.content))
             return (1);
-        printf("[%s]\n", snake.content);
+        snake.config = my_str_to_word_array(snake.content, "\n");
         free(snake.content);
+        if (snake.config == NULL)
+            return (1);
+        free_array(snake.config);
     }
     return (0);
 }

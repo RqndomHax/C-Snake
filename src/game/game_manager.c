@@ -33,16 +33,6 @@ int init_game(snake_t *snake)
     return (1);
 }
 
-static void print_infos(snake_t *snake)
-{
-    printf("----------\n");
-    printf("\n--- snake head position ---\n");
-    printf("--direction: %d\n--x: %d\n--y: %d\n", snake->direction, snake->snake->x, snake->snake->y);
-    printf("\n--- snake size ---\n");
-    printf("--size: %d\n", list_size(snake->snake));
-    printf("----------\n");
-}
-
 int run_game(snake_t *snake)
 {
     int delay = 0;
@@ -53,7 +43,7 @@ int run_game(snake_t *snake)
         delay = 0;
         if (!move_snake(snake))
             return (0);
-        print_infos(snake);
+        snake->moves++;
         usleep(1000000/snake->config.tickrate);
     }
     return (1);

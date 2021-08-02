@@ -20,6 +20,7 @@ void init_setup(snake_t *snake, char **argv)
     snake->config.arena = -1;
     snake->config_path = NULL;
     snake->argv = argv;
+    snake->moves = 0;
 }
 
 static void config_priority(char **config, char *key, int *target)

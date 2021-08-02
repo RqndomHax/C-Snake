@@ -9,12 +9,17 @@
 
 #include <stdio.h>
 
-void show_stats(int has_won)
+void show_stats(int has_won, snake_t *snake)
 {
     if (!has_won)
         printf("You have lost the game !\n");
     else
         printf("Great job, you won !\n");
+    printf("----------\n");
+    printf("\n--- Game Stats ---\n");
+    printf("\n  size > %d\n", list_size(snake->snake));
+    printf("\n  moves > %d\n", snake->moves);
+    printf("----------\n");
 }
 
 int main(int argc, char **argv)
@@ -30,7 +35,7 @@ int main(int argc, char **argv)
         init_config(&snake);
     if (!(init_game(&snake)))
         return (1);
-    show_stats(run_game(&snake));
+    show_stats(run_game(&snake), &snake);
     list_destroy(&snake.snake);
     return (0);
 }

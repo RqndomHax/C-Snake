@@ -6,7 +6,6 @@
 */
 
 #include "../includes/snake.h"
-#include "../includes/lib.h"
 
 #include <stdio.h>
 
@@ -26,5 +25,9 @@ int main(int argc, char **argv)
     printf("booster = [%d]\n", snake.booster);
     printf("arena = [%d]\n", snake.arena);
     printf("display = [%d]\n", snake.display);
+    if (!(init_game(&snake)))
+        return (1);
+    run_game(&snake);
+    list_destroy(&snake.snake);
     return (0);
 }

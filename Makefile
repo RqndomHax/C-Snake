@@ -18,6 +18,7 @@ NCURSEFLAGS += -lncurses
 CC		= gcc
 
 SRC		= $(wildcard src/*.c)
+SRC		+= $(wildcard src/game/*.c)
 SRC		+= $(wildcard src/utils/*.c)
 
 LIBSRC	= $(wildcard lib/*.c)

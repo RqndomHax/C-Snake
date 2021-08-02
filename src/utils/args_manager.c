@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "../../includes/snake.h"
-#include "../../includes/lib.h"
 
 int show_help(void)
 {
@@ -17,14 +16,18 @@ int show_help(void)
         "Author: RqndomHax (https://github.com/RqndomHax)\n"
 
         "\n[Config File]\n"
-        "  fps: 60 # This is the fps cap\n"
-        "  size: 4 # This is the default snake size\n"
-        "  booster: 1 # This is the size gained by the snake when it eats\n"
-        "  arena: 20 # This is the size of the arena (20 = 20x20)\n"
-        "  display: ncurses # This is the type of display of the game (ncurses / sfml))\n"
+        "  fps:         60 # This is the fps cap\n"
+        "  tickrate:    30 # This is the tick rate of the game, tickrate: 10 means 10 ticks per second\n"
+        "  speed:       1 # The amount of tick it takes to move the snake"
+        "  size:        4 # This is the default snake size\n"
+        "  booster:     1 # This is the size gained by the snake when it eats\n"
+        "  arena:       20 # This is the size of the arena (20 = 20x20)\n"
+        "  display:     ncurses # This is the type of display of the game (ncurses / sfml))\n"
     
         "\n[Commands]\n"
         "  --fps n # sets the fps cap\n"
+        "  --tickrate n # sets the game's tickrate\n"
+        "  --speed n # sets the amount of ticks it takes to move the snake\n"
         "  --size n # sets the snake's size\n"
         "  --booster n # sets the size multiplier\n"
         "  --arena n # sets the arena's size\n"
@@ -55,6 +58,10 @@ int is_command(snake_t *snake, int *index)
 {
     if (strcmp(snake->argv[(*index)], "--fps") == 0)
         return (replace_value(&snake->argv[++(*index)], &snake->fps));
+    if (strcmp(snake->argv[(*index)], "--tickrate") == 0)
+        return (replace_value(&snake->argv[++(*index)], &snake->tickrate));
+    if (strcmp(snake->argv[(*index)], "--speed") == 0)
+        return (replace_value(&snake->argv[++(*index)], &snake->speed));
     if (strcmp(snake->argv[(*index)], "--size") == 0)
         return (replace_value(&snake->argv[++(*index)], &snake->size));
     if (strcmp(snake->argv[(*index)], "--booster") == 0)

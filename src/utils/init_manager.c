@@ -8,12 +8,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../../includes/snake.h"
-#include "../../includes/lib.h"
 
 void init_setup(snake_t *snake, char **argv)
 {
     snake->display = NCURSES;
     snake->fps = -1;
+    snake->tickrate = -1;
+    snake->speed = -1;
     snake->size = -1;
     snake->booster = -1;
     snake->arena = -1;
@@ -37,6 +38,8 @@ void init_config(snake_t *snake)
         return;
     for (int i = 0; config[i]; printf("[%s]\n", config[i++]));
     config_priority(config, "fps", &snake->fps);
+    config_priority(config, "tickrate", &snake->tickrate);
+    config_priority(config, "speed", &snake->speed);
     config_priority(config, "size", &snake->size);
     config_priority(config, "booster", &snake->booster);
     config_priority(config, "arena", &snake->arena);

@@ -7,35 +7,64 @@
 
 #include "../../includes/snake.h"
 
-void move_left(snake_t *snake)
+// Creates a new booster
+static int new_booster(snake_t *snake)
 {
-    if (snake->direction == RIGHT)
-        return;
-    snake->direction = LEFT;
+    list_t *tmp = snake->snake;
+    int x = 0;
+    int y = 0;
+
+    for (int xtmp = 1; xtmp < snake->config.size; xtmp++) {
+        for (int ytmp = 1; ytmp < snake->config.size; ytmp++) {
+            while (tmp != NULL) {
+                if (tmp->x == x && tmp->y == y) {
+                    x = -1;
+                    y = -1;
+                }
+                if (tmp->x != xtmp && tmp->y != ytmp) {
+                    x = xtmp;
+                    y = ytmp;
+                    tmp = tmp->next;
+                }
+            }
+        }
+    }
+    if (x == -1 || y == -1)
+        return (0);
+    snake->booster_x = x;
+    snake->booster_y = y;
+    printf("new booster at x = %d | y = %d\n", x, y);
+    return (1);
 }
 
-void move_right(snake_t *snake)
+// Checks if the snake is on a booster
+static int check_boosters(snake_t *snake)
 {
-    if (snake->direction == LEFT)
-        return;
-    snake->direction = RIGHT;
+    if (snake->booster_x == -1 || snake->booster_y == -1)
+        return (new_booster(snake));
+    if (snake->snake->x == snake->booster_x && snake->snake->y == snake->booster_y) {
+            for (int i = 0; i < snake->config.booster; i++)
+                list_add(&snake->snake, snake->snake->x, snake->snake->y);
+            new_booster(snake);
+        }
+    return (1);
 }
 
-void move_up(snake_t *snake)
+// Checks if the snake is touching its tail
+static int check_tail(snake_t *snake)
 {
-    if (snake->direction == DOWN)
-        return;
-    snake->direction = UP;
+    list_t *tail = snake->snake->next;
+
+    while (tail != NULL) {
+        if (snake->snake->x == tail->x && snake->snake->x == tail->y)
+            return (0);
+        tail = tail->next;
+    }
+    return (1);
 }
 
-void move_down(snake_t *snake)
-{
-    if (snake->direction == UP)
-        return;
-    snake->direction = DOWN;
-}
-
-int auto_move(snake_t *snake)
+// Update the snake's coordinates
+static void update_coordinates(snake_t *snake)
 {
     switch (snake->direction) {
         case UP:
@@ -51,7 +80,19 @@ int auto_move(snake_t *snake)
             snake->snake->x++;
             break;
     }
+}
+
+int auto_move(snake_t *snake)
+{
+    update_coordinates(snake);
+    // Check if snake's head is touching an arena border
     if (snake->snake->x == snake->config.arena || snake->snake->y == snake->config.arena)
         return (0);
-    return (1);
+    if (snake->snake->x == 0 || snake->snake->y == 0)
+        return (0);
+    if (!check_tail(snake))
+        return (0);
+    if (!check_boosters(snake))
+        return (1);
+    return (2);
 }

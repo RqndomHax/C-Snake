@@ -21,6 +21,8 @@ void init_setup(snake_t *snake, char **argv)
     snake->config_path = NULL;
     snake->argv = argv;
     snake->moves = 0;
+    snake->booster_x = -1;
+    snake->booster_y = -1;
 }
 
 static void config_priority(char **config, char *key, int *target)

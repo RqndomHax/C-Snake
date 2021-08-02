@@ -50,7 +50,8 @@ typedef struct snake_s
     int is_running;
     enum direction_e direction;
     list_t *snake;
-    list_t *boosters;
+    int booster_x;
+    int booster_y;
 }snake_t;
 
 void init_setup(snake_t *snake, char **argv);

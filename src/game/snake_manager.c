@@ -7,27 +7,27 @@
 
 #include "../../includes/snake.h"
 
-static int move_tail_snake(list_t *bit, list_t *destination)
+static void move_tail_snake(list_t *bit, list_t *destination)
 {
     if (bit->x == destination->x && bit->y == destination->y)
-        return (0);
+        return;
     bit->x = destination->x;
     bit->y = destination->y;
-    return (1);
 }
 
 int move_snake(snake_t *snake)
 {
     list_t *tmp = snake->snake;
     list_t *old = snake->snake;
+    int result = 0;
 
-    if (!auto_move(snake))
-        return (0);
+    result = auto_move(snake);
+    if (result != 2)
+        return (result);
     while (tmp->next != NULL) {
         old = tmp;
         tmp = tmp->next;
-        if (!move_tail_snake(tmp, old))
-            return (0);
+        move_tail_snake(tmp, old);
     }
-    return (1);
+    return (2);
 }

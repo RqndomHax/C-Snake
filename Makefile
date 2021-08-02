@@ -20,6 +20,7 @@ CC		= gcc
 SRC		= $(wildcard src/*.c)
 SRC		+= $(wildcard src/game/*.c)
 SRC		+= $(wildcard src/utils/*.c)
+SRC		+= $(wildcard src/display/*.c)
 
 LIBSRC	= $(wildcard lib/*.c)
 

@@ -41,6 +41,16 @@ typedef struct config_s
     char **config;
 }config_t;
 
+typedef struct ncurses_s
+{
+
+}ncurses_t;
+
+typedef struct sfml_s
+{
+
+}sfml_t;
+
 typedef struct snake_s
 {
     char **argv;
@@ -52,6 +62,8 @@ typedef struct snake_s
     list_t *snake;
     int booster_x;
     int booster_y;
+    ncurses_t *ncurses;
+    sfml_t *sfml;
 }snake_t;
 
 void init_setup(snake_t *snake, char **argv);

@@ -11,6 +11,8 @@
 
 void init_setup(snake_t *snake, char **argv)
 {
+    snake->ncurses = NULL;
+    snake->sfml = NULL;
     snake->config.display = NCURSES;
     snake->config.fps = -1;
     snake->config.tickrate = -1;

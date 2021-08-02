@@ -5,13 +5,15 @@
 ## Makefile
 ##
 
-CFLAGS 	= -Llib -lmy
+CFLAGS 		= -Llib -lmy
 
-CFLAGS += -W -Wall -Wextra
+CFLAGS 		+= -W -Wall -Wextra
 
-CFLAGS += -g -g3
+CFLAGS 		+= -g -g3
 
-CFLAGS 	+= -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio
+SFMLFLAGS 	+= -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio
+
+NCURSEFLAGS += -lncurses
 
 CC		= gcc
 
@@ -31,7 +33,7 @@ LIB		= lib/libmy.a
 all: $(OUT)
 
 $(OUT): $(LIB) $(OBJ)
-	$(CC) -o $@ $(OBJ) $(CFLAGS)
+	$(CC) -o $@ $(OBJ) $(CFLAGS) $(SFMLFLAGS) $(NCURSEFLAGS)
 
 $(LIB): $(LIBOBJ)
 	$(AR) rsc $@ $(LIBOBJ)

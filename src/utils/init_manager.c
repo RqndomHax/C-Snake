@@ -15,7 +15,6 @@ void init_setup(snake_t *snake, char **argv)
     snake->size = -1;
     snake->booster = -1;
     snake->arena = -1;
-    snake->content = NULL;
     snake->config_path = NULL;
     snake->argv = argv;
 }

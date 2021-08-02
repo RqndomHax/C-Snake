@@ -18,7 +18,6 @@ typedef struct snake_s
     int size;
     int booster;
     int arena;
-    char *content;
     char **config;
     char *config_path;
     char **argv;

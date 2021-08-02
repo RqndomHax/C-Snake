@@ -18,13 +18,11 @@ int main(int argc, char **argv)
     if (!parse_args(&snake))
         return (1);
     if (snake.config_path != NULL) {
-        if (!read_file(argv[1], &snake.content))
-            return (1);
-        snake.config = my_str_to_word_array(snake.content, "\n");
-        free(snake.content);
-        if (snake.config == NULL)
-            return (1);
-        free_array(snake.config);
+        snake.config = get_config(snake.config_path);
+        if (snake.config != NULL) {
+            for (int i = 0; snake.config[i]; printf("[%s]\n", snake.config[i++]));
+            free_array(snake.config);
+        }
     }
     return (0);
 }

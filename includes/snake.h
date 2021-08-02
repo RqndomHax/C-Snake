@@ -11,9 +11,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+enum display_e
+{
+    NCURSES,
+    SFML
+};
+
 typedef struct snake_s
 {
-    int display;
+    enum display_e display;
     int fps;
     int size;
     int booster;
@@ -24,6 +30,8 @@ typedef struct snake_s
 }snake_t;
 
 void init_setup(snake_t *snake, char **argv);
+
+void init_config(snake_t *snake);
 
 int parse_config(snake_t *snake);
 

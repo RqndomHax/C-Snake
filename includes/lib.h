@@ -18,4 +18,8 @@ char **my_str_to_word_array(char *str, char *dlm);
 
 char **get_config(char *filepath);
 
+int my_config_get_int(char **config, char *key);
+
+char *my_config_get_string(char **config, char *key);
+
 #endif /* !LIB_H_ */

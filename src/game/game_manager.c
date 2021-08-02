@@ -19,7 +19,7 @@ void set_default_value(int *target, int value)
 int init_game(snake_t *snake)
 {
     snake->snake = NULL;
-    list_add(&snake->snake, snake->size/2, snake->size/2);
+    list_add(&snake->snake, snake->arena/2, snake->arena/2);
     if (snake->snake == NULL)
         return (0);
     snake->is_running = 1;

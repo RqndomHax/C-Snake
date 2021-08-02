@@ -34,3 +34,24 @@ void move_down(snake_t *snake)
         return;
     snake->direction = DOWN;
 }
+
+int auto_move(snake_t *snake)
+{
+    switch (snake->direction) {
+        case UP:
+            snake->snake->y--;
+            break;
+        case DOWN:
+            snake->snake->y++;
+            break;
+        case LEFT:
+            snake->snake->x--;
+            break;
+        case RIGHT:
+            snake->snake->x++;
+            break;
+    }
+    if (snake->snake->x == snake->config.arena || snake->snake->y == snake->config.arena)
+        return (0);
+    return (1);
+}

@@ -29,7 +29,7 @@ enum direction_e
     DOWN
 };
 
-typedef struct snake_s
+typedef struct config_s
 {
     enum display_e display;
     int fps;
@@ -39,11 +39,18 @@ typedef struct snake_s
     int booster;
     int arena;
     char **config;
-    char *config_path;
+}config_t;
+
+typedef struct snake_s
+{
     char **argv;
+    char *config_path;
+    config_t config;
+    int moves;
     int is_running;
     enum direction_e direction;
     list_t *snake;
+    list_t *boosters;
 }snake_t;
 
 void init_setup(snake_t *snake, char **argv);
@@ -59,5 +66,9 @@ int parse_config(snake_t *snake);
 int show_help(void);
 
 int parse_args(snake_t *snake);
+
+int auto_move(snake_t *snake);
+
+int move_snake(snake_t *snake);
 
 #endif /* !SNAKE_H_ */

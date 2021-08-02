@@ -57,23 +57,23 @@ static int replace_value(char **value, int *target)
 int is_command(snake_t *snake, int *index)
 {
     if (strcmp(snake->argv[(*index)], "--fps") == 0)
-        return (replace_value(&snake->argv[++(*index)], &snake->fps));
+        return (replace_value(&snake->argv[++(*index)], &snake->config.fps));
     if (strcmp(snake->argv[(*index)], "--tickrate") == 0)
-        return (replace_value(&snake->argv[++(*index)], &snake->tickrate));
+        return (replace_value(&snake->argv[++(*index)], &snake->config.tickrate));
     if (strcmp(snake->argv[(*index)], "--speed") == 0)
-        return (replace_value(&snake->argv[++(*index)], &snake->speed));
+        return (replace_value(&snake->argv[++(*index)], &snake->config.speed));
     if (strcmp(snake->argv[(*index)], "--size") == 0)
-        return (replace_value(&snake->argv[++(*index)], &snake->size));
+        return (replace_value(&snake->argv[++(*index)], &snake->config.size));
     if (strcmp(snake->argv[(*index)], "--booster") == 0)
-        return (replace_value(&snake->argv[++(*index)], &snake->booster));
+        return (replace_value(&snake->argv[++(*index)], &snake->config.booster));
     if (strcmp(snake->argv[(*index)], "--arena") == 0)
-        return (replace_value(&snake->argv[++(*index)], &snake->arena));
+        return (replace_value(&snake->argv[++(*index)], &snake->config.arena));
     if (strcmp(snake->argv[(*index)], "--ncurses") == 0) {
-        snake->display = NCURSES;
+        snake->config.display = NCURSES;
         return (1);
     }
     if (strcmp(snake->argv[(*index)], "--sfml") == 0) {
-        snake->display = SFML;
+        snake->config.display = SFML;
         return (1);
     }
     if (strncmp("--", snake->argv[(*index)], 2) == 0) {

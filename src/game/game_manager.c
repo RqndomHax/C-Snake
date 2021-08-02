@@ -19,18 +19,17 @@ void set_default_value(int *target, int value)
 int init_game(snake_t *snake)
 {
     snake->snake = NULL;
-    list_add(&snake->snake, snake->arena/2, snake->arena/2);
+    list_add(&snake->snake, snake->config.arena/2, snake->config.arena/2);
     if (snake->snake == NULL)
         return (0);
     snake->is_running = 1;
-    set_default_value(&snake->fps, 60);
-    set_default_value(&snake->tickrate, 10);
-    set_default_value(&snake->speed, 2);
-    set_default_value(&snake->size, 4);
-    set_default_value(&snake->booster, 1);
-    set_default_value(&snake->arena, 20);
-    if (snake->display == DEFAULT)
-        snake->display = NCURSES;
+    set_default_value(&snake->config.fps, 60);
+    set_default_value(&snake->config.tickrate, 10);
+    set_default_value(&snake->config.speed, 2);
+    set_default_value(&snake->config.size, 4);
+    set_default_value(&snake->config.booster, 1);
+    set_default_value(&snake->config.arena, 20);
+    snake->direction = RIGHT;
     return (1);
 }
 
@@ -46,14 +45,16 @@ static void print_infos(snake_t *snake)
 
 int run_game(snake_t *snake)
 {
-    int speed = 0;
+    int delay = 0;
 
     while (snake->is_running) {
-        if (speed++ < snake->speed)
+        if (delay++ < snake->config.speed)
             continue;
-        speed = 0;
+        delay = 0;
+        if (!move_snake(snake))
+            return (0);
         print_infos(snake);
-        usleep(1000000/snake->tickrate);
+        usleep(1000000/snake->config.tickrate);
     }
     return (1);
 }

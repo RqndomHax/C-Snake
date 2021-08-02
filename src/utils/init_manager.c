@@ -11,13 +11,13 @@
 
 void init_setup(snake_t *snake, char **argv)
 {
-    snake->display = NCURSES;
-    snake->fps = -1;
-    snake->tickrate = -1;
-    snake->speed = -1;
-    snake->size = -1;
-    snake->booster = -1;
-    snake->arena = -1;
+    snake->config.display = NCURSES;
+    snake->config.fps = -1;
+    snake->config.tickrate = -1;
+    snake->config.speed = -1;
+    snake->config.size = -1;
+    snake->config.booster = -1;
+    snake->config.arena = -1;
     snake->config_path = NULL;
     snake->argv = argv;
 }
@@ -37,17 +37,17 @@ void init_config(snake_t *snake)
     if (config == NULL)
         return;
     for (int i = 0; config[i]; printf("[%s]\n", config[i++]));
-    config_priority(config, "fps", &snake->fps);
-    config_priority(config, "tickrate", &snake->tickrate);
-    config_priority(config, "speed", &snake->speed);
-    config_priority(config, "size", &snake->size);
-    config_priority(config, "booster", &snake->booster);
-    config_priority(config, "arena", &snake->arena);
-    if (snake->display == DEFAULT) {
+    config_priority(config, "fps", &snake->config.fps);
+    config_priority(config, "tickrate", &snake->config.tickrate);
+    config_priority(config, "speed", &snake->config.speed);
+    config_priority(config, "size", &snake->config.size);
+    config_priority(config, "booster", &snake->config.booster);
+    config_priority(config, "arena", &snake->config.arena);
+    if (snake->config.display == DEFAULT) {
         tmp = my_config_get_string(config, "display");
         if (tmp != NULL) {
             if (strcmp(tmp, "sfml") == 0)
-                snake->display = SFML;
+                snake->config.display = SFML;
             free(tmp);
         }
     }

@@ -9,6 +9,14 @@
 
 #include <stdio.h>
 
+void show_stats(int has_won)
+{
+    if (!has_won)
+        printf("You have lost the game !\n");
+    else
+        printf("Great job, you won !\n");
+}
+
 int main(int argc, char **argv)
 {
     snake_t snake;
@@ -20,14 +28,9 @@ int main(int argc, char **argv)
         return (1);
     if (snake.config_path != NULL)
         init_config(&snake);
-    printf("fps = [%d]\n", snake.fps);
-    printf("size = [%d]\n", snake.size);
-    printf("booster = [%d]\n", snake.booster);
-    printf("arena = [%d]\n", snake.arena);
-    printf("display = [%d]\n", snake.display);
     if (!(init_game(&snake)))
         return (1);
-    run_game(&snake);
+    show_stats(run_game(&snake));
     list_destroy(&snake.snake);
     return (0);
 }

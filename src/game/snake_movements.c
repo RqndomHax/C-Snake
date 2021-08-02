@@ -45,7 +45,7 @@ static int check_boosters(snake_t *snake)
     if (snake->snake->x == snake->booster_x && snake->snake->y == snake->booster_y) {
             for (int i = 0; i < snake->config.booster; i++)
                 list_add(&snake->snake, snake->snake->x, snake->snake->y);
-            new_booster(snake);
+            return (new_booster(snake));
         }
     return (1);
 }

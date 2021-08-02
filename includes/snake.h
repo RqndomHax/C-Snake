@@ -13,6 +13,7 @@
 
 enum display_e
 {
+    DEFAULT,
     NCURSES,
     SFML
 };

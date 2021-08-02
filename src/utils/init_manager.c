@@ -21,6 +21,12 @@ void init_setup(snake_t *snake, char **argv)
     snake->argv = argv;
 }
 
+static void config_priority(char **config, char *key, int *target)
+{
+    if (*target == -1)
+        *target = my_config_get_int(config, key);
+}
+
 void init_config(snake_t *snake)
 {
     char **config = NULL;
@@ -30,17 +36,17 @@ void init_config(snake_t *snake)
     if (config == NULL)
         return;
     for (int i = 0; config[i]; printf("[%s]\n", config[i++]));
-    snake->fps = my_config_get_int(config, "fps");
-    snake->size = my_config_get_int(config, "size");
-    snake->booster = my_config_get_int(config, "booster");
-    snake->arena = my_config_get_int(config, "arena");
-    tmp = my_config_get_string(config, "display");
-    if (tmp != NULL) {
-        if (strcmp(tmp, "sfml") == 0)
-            snake->display = SFML;
-        else
-            snake->display = NCURSES;
-        free(tmp);
+    config_priority(config, "fps", &snake->fps);
+    config_priority(config, "size", &snake->size);
+    config_priority(config, "booster", &snake->booster);
+    config_priority(config, "arena", &snake->arena);
+    if (snake->display == DEFAULT) {
+        tmp = my_config_get_string(config, "display");
+        if (tmp != NULL) {
+            if (strcmp(tmp, "sfml") == 0)
+                snake->display = SFML;
+            free(tmp);
+        }
     }
     free_array(config);
 }

@@ -62,11 +62,11 @@ int is_command(snake_t *snake, int *index)
     if (strcmp(snake->argv[(*index)], "--arena") == 0)
         return (replace_value(&snake->argv[++(*index)], &snake->arena));
     if (strcmp(snake->argv[(*index)], "--ncurses") == 0) {
-        snake->display = 0;
+        snake->display = NCURSES;
         return (1);
     }
     if (strcmp(snake->argv[(*index)], "--sfml") == 0) {
-        snake->display = 1;
+        snake->display = SFML;
         return (1);
     }
     if (strncmp("--", snake->argv[(*index)], 2) == 0) {

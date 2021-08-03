@@ -13,20 +13,13 @@
 
 #include "list.h"
 #include "lib.h"
+#include "display.h"
 
 enum display_e
 {
     DEFAULT,
     NCURSES,
     SFML
-};
-
-enum direction_e
-{
-    RIGHT,
-    LEFT,
-    UP,
-    DOWN
 };
 
 typedef struct config_s
@@ -38,18 +31,7 @@ typedef struct config_s
     int size;
     int booster;
     int arena;
-    char **config;
 }config_t;
-
-typedef struct ncurses_s
-{
-
-}ncurses_t;
-
-typedef struct sfml_s
-{
-
-}sfml_t;
 
 typedef struct snake_s
 {
@@ -58,11 +40,10 @@ typedef struct snake_s
     config_t config;
     int moves;
     int is_running;
-    enum direction_e direction;
-    list_t *snake;
+    list_t *head;
+    list_t *tail;
     int booster_x;
     int booster_y;
-    ncurses_t *ncurses;
     sfml_t *sfml;
 }snake_t;
 
@@ -71,6 +52,8 @@ void init_setup(snake_t *snake, char **argv);
 void init_config(snake_t *snake);
 
 int init_game(snake_t *snake);
+
+int init_display(snake_t *snake);
 
 int run_game(snake_t *snake);
 
@@ -83,5 +66,11 @@ int parse_args(snake_t *snake);
 int auto_move(snake_t *snake);
 
 int move_snake(snake_t *snake);
+
+void print_ncurse(snake_t *snake);
+
+void update_coordinates(list_t *snake);
+
+void manage_game(snake_t *snake);
 
 #endif /* !SNAKE_H_ */

@@ -20,14 +20,16 @@ void list_destroy(list_t **list)
     *list = NULL;
 }
 
-void list_add(list_t **list, int y, int x)
+list_t *list_add(list_t **list, int x, int y)
 {
     list_t *new;
     list_t *to_last = *list;
 
     new = malloc(sizeof(list_t));
-    new->y = y;
+    if (!new)
+        return (0);
     new->x = x;
+    new->y = y;
     new->next = NULL;
     if (*list == NULL)
         *list = new;
@@ -36,6 +38,7 @@ void list_add(list_t **list, int y, int x)
             to_last = to_last->next;
         to_last->next = new;
     }
+    return (new);
 }
 
 

@@ -9,6 +9,10 @@
 #define DISPLAY_H_
 
 #include <ncurses.h>
+#include <SFML/Graphics.h>
+#include <SFML/Window.h>
+#include <SFML/System.h>
+#include <SFML/Audio.h>
 
 enum display_e
 {
@@ -19,9 +23,7 @@ enum display_e
 
 typedef struct sfml_s
 {
-
+    sfRenderWindow *window;
 }sfml_t;
-
-int init_sfml(sfml_t *sfml);
 
 #endif /* !DISPLAY_H_ */

@@ -14,8 +14,7 @@ void init_setup(snake_t *snake, char **argv)
 {
     time_t t;
 
-    snake->sfml = NULL;
-    snake->config.display = NCURSES;
+    snake->config.display = DEFAULT;
     snake->config.fps = -1;
     snake->config.tickrate = -1;
     snake->config.speed = -1;
@@ -79,11 +78,4 @@ int init_game(snake_t *snake)
         }
     }
     return (1);
-}
-
-// Graphical display with sfml
-int init_sfml(sfml_t *sfml)
-{
-    (void) sfml;
-    return (0);
 }

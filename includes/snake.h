@@ -10,6 +10,7 @@
 
 #include "list.h"
 #include "config.h"
+#include "display.h"
 
 typedef struct snake_s
 {
@@ -22,7 +23,7 @@ typedef struct snake_s
     list_t *tail;
     int booster_x;
     int booster_y;
-    sfml_t *sfml;
+    sfml_t sfml;
 }snake_t;
 
 #endif /* !SNAKE_H_ */

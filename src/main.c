@@ -17,6 +17,9 @@ void show_stats(int has_won, snake_t *snake)
         getch();
         endwin();
     }
+    else {
+        sfRenderWindow_destroy(snake->sfml.window);
+    }
     if (!has_won)
         printf("\n\nYou have lost the game !\n");
     else

@@ -18,7 +18,7 @@ void manage_game(snake_t *snake)
 int init_display(snake_t *snake)
 {
     if (snake->config.display == SFML)
-        return (init_sfml(snake->sfml));
+        return (init_sfml(snake));
     return (init_ncurses(snake));
 }
 

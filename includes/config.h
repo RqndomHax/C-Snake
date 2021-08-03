@@ -17,6 +17,7 @@ typedef struct config_s
     int size;
     int booster;
     int arena;
+    int does_tp;
 }config_t;
 
 #endif /* !CONFIG_H_ */

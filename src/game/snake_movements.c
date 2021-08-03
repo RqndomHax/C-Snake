@@ -56,27 +56,37 @@ static int check_tail(snake_t *snake)
 }
 
 // Update the snake's coordinates
-void update_coordinates(list_t *snake)
+void update_coordinates(list_t *snake, config_t *config)
 {
     switch (snake->direction) {
         case UP:
             snake->y--;
+            if (config->does_tp && snake->y == 0)
+                snake->y = config->arena-1;
             break;
         case DOWN:
             snake->y++;
+            if (config->does_tp && snake->y == config->arena)
+                snake->y = 1;
             break;
         case LEFT:
             snake->x--;
+            if (config->does_tp && snake->x == 0)
+                snake->x = config->arena-1;
             break;
         case RIGHT:
             snake->x++;
+            if (config->does_tp && snake->x == config->arena)
+                snake->x = 1;
             break;
     }
+    if (!config->does_tp)
+        return;
 }
 
 int auto_move(snake_t *snake)
 {
-    update_coordinates(snake->head);
+    update_coordinates(snake->head, &snake->config);
     // Check if snake's head is touching an arena border
     if (snake->head->x == snake->config.arena || snake->head->y == snake->config.arena)
         return (0);

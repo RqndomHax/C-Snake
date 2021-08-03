@@ -18,7 +18,7 @@ int move_snake(snake_t *snake)
     while (tail->next != NULL) {
         tail->direction = tail->next->direction;
         if (tail->next->x != tail->x || tail->next->y != tail->y)
-            update_coordinates(tail);
+            update_coordinates(tail, &snake->config);
         tail = tail->next;
     }
     return (2);

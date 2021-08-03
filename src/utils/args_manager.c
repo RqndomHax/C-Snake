@@ -23,6 +23,7 @@ int show_help(void)
         "  booster:     1 # This is the size gained by the snake when it eats\n"
         "  arena:       20 # This is the size of the arena (20 = 20x20)\n"
         "  display:     ncurses # This is the type of display of the game (ncurses / sfml))\n"
+        "  does_tp:     1 # If set to 1 the snake is tped to the other side of the map when going through a wall, else (0) it dies."
     
         "\n[Commands]\n"
         "  --fps n # sets the fps cap\n"
@@ -33,6 +34,7 @@ int show_help(void)
         "  --arena n # sets the arena's size\n"
         "  --ncurses # sets the display's type to ncurse\n"
         "  --sfml # sets the display's type to sfml\n"
+        "  --does_tp n # If set to 1 the snake is tped to the other side of the map when going through a wall, else (0) it dies."
         
         "\nCommands overwrite the parameters of the config !\n");
     return (0);
@@ -68,6 +70,8 @@ int is_command(snake_t *snake, int *index)
         return (replace_value(&snake->argv[++(*index)], &snake->config.booster));
     if (strcmp(snake->argv[(*index)], "--arena") == 0)
         return (replace_value(&snake->argv[++(*index)], &snake->config.arena));
+    if (strcmp(snake->argv[(*index)], "--does_tp") == 0)
+        return (replace_value(&snake->argv[++(*index)], &snake->config.does_tp));
     if (strcmp(snake->argv[(*index)], "--ncurses") == 0) {
         snake->config.display = NCURSES;
         return (1);

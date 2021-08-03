@@ -32,7 +32,7 @@ int run_game(snake_t *snake);
 int auto_move(snake_t *snake);
 int move_snake(snake_t *snake);
 void manage_game(snake_t *snake);
-void update_coordinates(list_t *snake);
+void update_coordinates(list_t *snake, config_t *config);
 
 /* --- DISPLAY --- */
 int init_display(snake_t *snake);

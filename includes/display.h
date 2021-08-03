@@ -22,4 +22,6 @@ typedef struct sfml_s
 
 }sfml_t;
 
+int init_sfml(sfml_t *sfml);
+
 #endif /* !DISPLAY_H_ */

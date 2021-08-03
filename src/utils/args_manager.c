@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "../../includes/snake.h"
+#include "../../includes/game.h"
 
 int show_help(void)
 {

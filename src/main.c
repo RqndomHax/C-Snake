@@ -5,7 +5,7 @@
 ** main
 */
 
-#include "../includes/snake.h"
+#include "../includes/game.h"
 
 #include <stdio.h>
 
@@ -13,7 +13,7 @@ void show_stats(int has_won, snake_t *snake)
 {
     if (snake->config.display == NCURSES) {
         timeout(10000);
-        print_ncurse(snake);
+        print_ncurses(snake);
         getch();
         endwin();
     }

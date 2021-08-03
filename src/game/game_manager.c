@@ -5,7 +5,7 @@
 ** game manager
 */
 
-#include "../../includes/snake.h"
+#include "../../includes/game.h"
 #include "../../includes/list.h"
 #include <unistd.h>
 #include <time.h>
@@ -15,7 +15,7 @@ int run_game(snake_t *snake)
     int delay = 0;
     int result = 0;
 
-    print_ncurse(snake);
+    print_display(snake);
     while (snake->is_running) {
         manage_game(snake);
         if (delay++ < snake->config.speed)
@@ -27,7 +27,7 @@ int run_game(snake_t *snake)
             snake->is_running = 0;
             return (result);
         }
-        print_ncurse(snake);
+        print_display(snake);
     }
     snake->is_running = 0;
     return (1);

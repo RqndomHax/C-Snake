@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "../../includes/snake.h"
+#include "../../includes/game.h"
 
 void init_setup(snake_t *snake, char **argv)
 {

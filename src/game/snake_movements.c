@@ -5,7 +5,7 @@
 ** game movements
 */
 
-#include "../../includes/snake.h"
+#include "../../includes/game.h"
 
 // Creates a new booster
 static int new_booster(snake_t *snake)

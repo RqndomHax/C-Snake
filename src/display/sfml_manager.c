@@ -5,7 +5,7 @@
 ** sfml manager
 */
 
-#include "../../includes/snake.h"
+#include "../../includes/game.h"
 
 void sfml_display(snake_t *snake)
 {

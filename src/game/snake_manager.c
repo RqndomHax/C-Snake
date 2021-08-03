@@ -5,7 +5,7 @@
 ** snake manager
 */
 
-#include "../../includes/snake.h"
+#include "../../includes/game.h"
 
 int move_snake(snake_t *snake)
 {

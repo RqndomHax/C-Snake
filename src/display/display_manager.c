@@ -6,7 +6,7 @@
 */
 
 #include <unistd.h>
-#include "../../includes/snake.h"
+#include "../../includes/game.h"
 
 void manage_game(snake_t *snake)
 {
@@ -20,4 +20,11 @@ int init_display(snake_t *snake)
     if (snake->config.display == SFML)
         return (init_sfml(snake->sfml));
     return (init_ncurses(snake));
+}
+
+void print_display(snake_t *snake)
+{
+    if (snake->config.display == SFML)
+        return;
+    return (print_ncurses(snake));
 }

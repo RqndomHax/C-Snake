@@ -12,14 +12,15 @@
 void show_stats(int has_won, snake_t *snake)
 {
     if (!has_won)
-        printf("You have lost the game !\n");
+        printf("\n\nYou have lost the game !\n");
     else
-        printf("Great job, you won !\n");
-    printf("----------\n");
-    printf("\n--- Game Stats ---\n");
-    printf("\n  size > %d\n", list_size(snake->snake));
-    printf("\n  moves > %d\n", snake->moves);
-    printf("----------\n");
+        printf("\n\nGreat job, you won !\n");
+    printf("--------------------\n");
+    printf("\n------ Stats -------\n");
+    printf("\nsize ->\t\t%d\n", list_size(snake->snake));
+    printf("\nmoves ->\t%d\n", snake->moves);
+    printf("\n--- by RqndomHax ---\n");
+    printf("--------------------\n");
 }
 
 int main(int argc, char **argv)

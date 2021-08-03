@@ -7,10 +7,13 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "../../includes/snake.h"
 
 void init_setup(snake_t *snake, char **argv)
 {
+    time_t t;
+
     snake->ncurses = NULL;
     snake->sfml = NULL;
     snake->config.display = NCURSES;
@@ -25,6 +28,7 @@ void init_setup(snake_t *snake, char **argv)
     snake->moves = 0;
     snake->booster_x = -1;
     snake->booster_y = -1;
+    srand((unsigned) time(&t));
 }
 
 static void config_priority(char **config, char *key, int *target)

@@ -11,26 +11,14 @@
 static int new_booster(snake_t *snake)
 {
     list_t *tmp = snake->snake;
-    int x = 0;
-    int y = 0;
+    int x = (rand() % snake->config.arena-1) + 1;
+    int y = (rand() % snake->config.arena-1) + 1;
 
-    for (int xtmp = 1; xtmp < snake->config.size; xtmp++) {
-        for (int ytmp = 1; ytmp < snake->config.size; ytmp++) {
-            while (tmp != NULL) {
-                if (tmp->x == x && tmp->y == y) {
-                    x = -1;
-                    y = -1;
-                }
-                if (tmp->x != xtmp && tmp->y != ytmp) {
-                    x = xtmp;
-                    y = ytmp;
-                    tmp = tmp->next;
-                }
-            }
-        }
+    while (tmp != NULL) {
+        if (tmp->x == x && tmp->y == y)
+            return (new_booster(snake));
+        tmp = tmp->next;
     }
-    if (x == -1 || y == -1)
-        return (0);
     snake->booster_x = x;
     snake->booster_y = y;
     printf("new booster at x = %d | y = %d\n", x, y);

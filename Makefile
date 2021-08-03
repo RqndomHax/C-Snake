@@ -9,7 +9,7 @@ CFLAGS 		= -Llib -lmy
 
 CFLAGS 		+= -W -Wall -Wextra
 
-CFLAGS 		+= -g -g3
+# CFLAGS 		+= -g -g3
 
 SFMLFLAGS 	+= -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio
 

@@ -17,7 +17,7 @@ int show_help(void)
 
         "\n[Config File]\n"
         "  fps:         60 # This is the fps cap\n"
-        "  tickrate:    30 # This is the tick rate of the game, tickrate: 10 means 10 ticks per second\n"
+        "  tickrate:    12 # This is the tick rate of the game, tickrate: 12 means 12 ticks per second\n"
         "  speed:       1 # The amount of tick it takes to move the snake"
         "  size:        4 # This is the default snake size\n"
         "  booster:     1 # This is the size gained by the snake when it eats\n"

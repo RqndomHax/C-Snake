@@ -61,7 +61,7 @@ int init_game(snake_t *snake)
     snake->tail = NULL;
     snake->is_running = 1;
     set_default_value(&snake->config.fps, 60);
-    set_default_value(&snake->config.tickrate, 10);
+    set_default_value(&snake->config.tickrate, 12);
     set_default_value(&snake->config.speed, 2);
     set_default_value(&snake->config.size, 4);
     set_default_value(&snake->config.booster, 1);

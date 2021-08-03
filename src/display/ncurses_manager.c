@@ -9,7 +9,7 @@
 #include <unistd.h>
 
 // Terminal display with ncurses
-int init_ncurses(snake_t *snake)
+int init_ncurses()
 {
     initscr();
     cbreak();

@@ -19,7 +19,7 @@ int init_display(snake_t *snake)
 {
     if (snake->config.display == SFML)
         return (init_sfml(snake));
-    return (init_ncurses(snake));
+    return (init_ncurses());
 }
 
 void print_display(snake_t *snake)

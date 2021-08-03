@@ -36,7 +36,7 @@ void update_coordinates(list_t *snake);
 
 /* --- DISPLAY --- */
 int init_display(snake_t *snake);
-int init_ncurses(snake_t *snake);
+int init_ncurses(void);
 int init_sfml(snake_t *snake);
 void print_ncurses(snake_t *snake);
 void sfml_display(snake_t *snake);

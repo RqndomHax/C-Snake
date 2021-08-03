@@ -10,6 +10,13 @@
 
 #include <ncurses.h>
 
+enum display_e
+{
+    DEFAULT,
+    NCURSES,
+    SFML
+};
+
 typedef struct sfml_s
 {
 

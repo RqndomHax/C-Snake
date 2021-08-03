@@ -33,13 +33,11 @@ int main(int argc, char **argv)
 {
     snake_t snake;
 
-    if (argc == 1)
-        return (show_help());
+    (void) argc;
     init_setup(&snake, argv);
     if (!parse_args(&snake))
         return (1);
-    if (snake.config_path != NULL)
-        init_config(&snake);
+    init_config(&snake);
     if (!(init_game(&snake)))
         return (1);
     if (!init_display(&snake)) {

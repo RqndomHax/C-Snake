@@ -105,5 +105,7 @@ int parse_args(snake_t *snake)
             return (0);
         }
     }
+    if (snake->config_path == NULL)
+        snake->config_path = "snake.cfg";
     return (1);
 }

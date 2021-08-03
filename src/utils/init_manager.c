@@ -27,13 +27,9 @@ void init_setup(snake_t *snake, char **argv)
     snake->moves = 0;
     snake->booster_x = -1;
     snake->booster_y = -1;
-    srand((unsigned) time(&t));
-}
 
-static void config_priority(char **config, char *key, int *target)
-{
-    if (*target == -1)
-        *target = my_config_get_int(config, key);
+    // initialize the random number generator used to generate boosters
+    srand((unsigned) time(&t));
 }
 
 void init_config(snake_t *snake)
@@ -44,7 +40,6 @@ void init_config(snake_t *snake)
     config = get_config(snake->config_path);
     if (config == NULL)
         return;
-    for (int i = 0; config[i]; printf("[%s]\n", config[i++]));
     config_priority(config, "fps", &snake->config.fps);
     config_priority(config, "tickrate", &snake->config.tickrate);
     config_priority(config, "speed", &snake->config.speed);
@@ -60,4 +55,35 @@ void init_config(snake_t *snake)
         }
     }
     free_array(config);
+}
+
+int init_game(snake_t *snake)
+{
+    snake->tail = NULL;
+    snake->is_running = 1;
+    set_default_value(&snake->config.fps, 60);
+    set_default_value(&snake->config.tickrate, 10);
+    set_default_value(&snake->config.speed, 2);
+    set_default_value(&snake->config.size, 4);
+    set_default_value(&snake->config.booster, 1);
+    set_default_value(&snake->config.arena, 20);
+    snake->head = list_add(&snake->tail, snake->config.arena/2, snake->config.arena/2);
+    if (!snake->head)
+        return (0);
+    for (int i = 0; i < snake->config.size; i++) {
+        snake->head->direction = RIGHT;
+        snake->head = list_add(&snake->tail, snake->config.arena/2, snake->config.arena/2);
+        if (!snake->head) {
+            list_destroy(&snake->tail);
+            return (0);
+        }
+    }
+    return (1);
+}
+
+// Graphical display with sfml
+int init_sfml(sfml_t *sfml)
+{
+    (void) sfml;
+    return (0);
 }

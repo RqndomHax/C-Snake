@@ -23,6 +23,7 @@ typedef struct snake_s
     list_t *tail;
     int booster_x;
     int booster_y;
+    int has_pressed;
     sfml_t sfml;
 }snake_t;
 

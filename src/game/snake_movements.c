@@ -27,11 +27,16 @@ static int new_booster(snake_t *snake)
 // Checks if the snake is on a booster
 static int check_boosters(snake_t *snake)
 {
+    enum direction_e tmp;
+
     if (snake->booster_x == -1 || snake->booster_y == -1)
         return (new_booster(snake));
     if (snake->head->x == snake->booster_x && snake->head->y == snake->booster_y) {
-            for (int i = 0; i < snake->config.booster; i++)
+            for (int i = 0; i < snake->config.booster; i++) {
+                tmp = snake->head->direction;
                 snake->head = list_add(&snake->head, snake->head->x, snake->head->y);
+                snake->head->direction = tmp;
+            }
             return (new_booster(snake));
         }
     return (1);

@@ -26,7 +26,7 @@ void init_setup(snake_t *snake, char **argv)
     snake->moves = 0;
     snake->booster_x = -1;
     snake->booster_y = -1;
-
+    snake->has_pressed = 0;
     // initialize the random number generator used to generate boosters
     srand((unsigned) time(&t));
 }

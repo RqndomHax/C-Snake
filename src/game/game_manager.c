@@ -20,6 +20,7 @@ int run_game(snake_t *snake)
         manage_game(snake);
         if (delay++ < snake->config.speed)
             continue;
+        snake->has_pressed = 0;
         delay = 0;
         snake->moves++;
         result = move_snake(snake);

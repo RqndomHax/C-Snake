@@ -91,5 +91,4 @@ void sfml_display(snake_t *snake)
             snake->has_pressed = 1;
         }
     }
-    (void) snake;
 }

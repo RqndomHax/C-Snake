@@ -8,6 +8,8 @@
 #ifndef LIB_H_
 #define LIB_H_
 
+#include <SFML/Graphics.h>
+
 void free_array(char **array);
 
 int read_file(char *filepath, char **content);
@@ -21,5 +23,7 @@ char **get_config(char *filepath);
 int my_config_get_int(char **config, char *key);
 
 char *my_config_get_string(char **config, char *key);
+
+void generate_sprite(sfSprite **sprite, sfTexture *texture);
 
 #endif /* !LIB_H_ */

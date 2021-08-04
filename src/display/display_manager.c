@@ -25,7 +25,7 @@ int init_display(snake_t *snake)
 void print_display(snake_t *snake)
 {
     if (snake->config.display == SFML)
-        return;
+        return (print_sfml(snake));
     return (print_ncurses(snake));
 }
 
@@ -50,6 +50,10 @@ void destroy_display(snake_t *snake)
 {
     if (snake->config.display == SFML) {
         sfRenderWindow_destroy(snake->sfml.window);
+        sfTexture_destroy(snake->sfml.headt);
+        sfTexture_destroy(snake->sfml.tailt);
+        sfSprite_destroy(snake->sfml.head);
+        sfSprite_destroy(snake->sfml.tail);
         return;
     }
     endwin();

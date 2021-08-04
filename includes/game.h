@@ -40,6 +40,7 @@ int init_display(snake_t *snake);
 int init_ncurses(snake_t *snake);
 int init_sfml(snake_t *snake);
 void print_ncurses(snake_t *snake);
+void print_sfml(snake_t *snake);
 void sfml_display(snake_t *snake);
 void ncurses_display(snake_t *snake);
 void print_display(snake_t *snake);

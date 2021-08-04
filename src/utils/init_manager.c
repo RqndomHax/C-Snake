@@ -60,6 +60,7 @@ void init_config(snake_t *snake)
 
 int init_snake(snake_t *snake)
 {
+    list_destroy(&snake->tail);
     snake->head = list_add(&snake->tail, snake->config.arena/2, snake->config.arena/2);
     if (!snake->head)
         return (0);

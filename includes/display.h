@@ -24,6 +24,15 @@ enum display_e
 typedef struct sfml_s
 {
     sfRenderWindow *window;
+    sfImage *icon;
+    sfTexture *headt;
+    sfTexture *tailt;
+    sfSprite *head;
+    sfSprite *tail;
+    sfTexture *boostert;
+    sfSprite *booster;
+    double head_result;
+    sfVector2f head_size;
 }sfml_t;
 
 #endif /* !DISPLAY_H_ */

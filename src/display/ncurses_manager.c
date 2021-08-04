@@ -43,5 +43,6 @@ void ncurses_display(snake_t *snake)
     }
 
     // tickrate system with ncurses
-    usleep(1000000/snake->config.tickrate);
+    if (!snake->has_pressed)
+        usleep(1000000/snake->config.tickrate);
 }

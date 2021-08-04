@@ -18,7 +18,7 @@ int run_game(snake_t *snake)
     print_display(snake);
     while (snake->is_running) {
         manage_game(snake);
-        if (delay++ < snake->config.speed)
+        if (delay++ < snake->config.speed && !snake->has_pressed)
             continue;
         snake->has_pressed = 0;
         delay = 0;

@@ -64,13 +64,14 @@ int init_snake(snake_t *snake)
     snake->head = list_add(&snake->tail, snake->config.arena/2, snake->config.arena/2);
     if (!snake->head)
         return (0);
+    snake->head->direction = RIGHT;
     for (int i = 0; i < snake->config.size; i++) {
-        snake->head->direction = RIGHT;
         snake->head = list_add(&snake->tail, snake->config.arena/2, snake->config.arena/2);
         if (!snake->head) {
             list_destroy(&snake->tail);
             return (0);
         }
+        snake->head->direction = RIGHT;
     }
     return (1);
 }

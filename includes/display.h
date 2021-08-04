@@ -33,6 +33,7 @@ typedef struct sfml_s
     sfSprite *booster;
     double head_result;
     sfVector2f head_size;
+    sfClock *clock;
 }sfml_t;
 
 #endif /* !DISPLAY_H_ */

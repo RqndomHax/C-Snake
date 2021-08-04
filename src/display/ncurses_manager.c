@@ -65,8 +65,4 @@ void ncurses_display(snake_t *snake)
     // Recursive if a key is pressed to empty the key buffers while checking if it's a valid key
     if (c != ERR && !snake->has_pressed)
         return (ncurses_display(snake));
-
-    // tickrate system with ncurses
-    if (!snake->has_pressed)
-        usleep(1000000/snake->config.tickrate);
 }

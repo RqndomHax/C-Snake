@@ -38,6 +38,8 @@ int init_sfml(snake_t *snake)
     sfRenderWindow_setMouseCursorVisible(snake->sfml.window, sfFalse);
     scale_sprite(snake->config.arena, &snake->sfml.head, &snake->sfml.headt, "assets/head.png");
     scale_sprite(snake->config.arena, &snake->sfml.tail, &snake->sfml.tailt, "assets/tail.png");
+    sfSprite_setColor(snake->sfml.tail, sfRed);
+    snake->sfml.clock = sfClock_create();
     return (1);
 }
 
@@ -89,7 +91,5 @@ void sfml_display(snake_t *snake)
             snake->has_pressed = 1;
         }
     }
-    // tickrate system with sfml
-    usleep(1000000/snake->config.tickrate);
     (void) snake;
 }

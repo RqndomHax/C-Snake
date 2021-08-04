@@ -10,6 +10,22 @@
 #include <unistd.h>
 #include <time.h>
 
+static int can_move(snake_t *snake)
+{
+    float seconds;
+
+    if (snake->has_pressed)
+        return (1);
+    if (snake->config.display != SFML) {
+        usleep(1000000/snake->config.tickrate);
+        return (0);
+    }
+    seconds = sfTime_asSeconds(sfClock_getElapsedTime(snake->sfml.clock));
+    if (seconds * snake->config.tickrate < 1)
+        return (0);
+    return (1);
+}
+
 int run_game(snake_t *snake)
 {
     int delay = 0;
@@ -18,7 +34,9 @@ int run_game(snake_t *snake)
     print_display(snake);
     while (snake->is_running) {
         manage_game(snake);
-        if (delay++ < snake->config.speed && !snake->has_pressed)
+        if (snake->config.display == SFML)
+            print_sfml(snake);
+        if (delay++ < snake->config.speed && !can_move(snake))
             continue;
         snake->has_pressed = 0;
         delay = 0;

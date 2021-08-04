@@ -27,7 +27,8 @@ void init_config(snake_t *snake);
 int parse_config(snake_t *snake);
 
 /* --- GAME --- */
-int init_game(snake_t *snake);
+void init_game(snake_t *snake);
+int init_snake(snake_t *snake);
 int run_game(snake_t *snake);
 int auto_move(snake_t *snake);
 int move_snake(snake_t *snake);
@@ -36,12 +37,15 @@ void update_coordinates(list_t *snake, config_t *config);
 
 /* --- DISPLAY --- */
 int init_display(snake_t *snake);
-int init_ncurses(void);
+int init_ncurses(snake_t *snake);
 int init_sfml(snake_t *snake);
 void print_ncurses(snake_t *snake);
 void sfml_display(snake_t *snake);
 void ncurses_display(snake_t *snake);
 void print_display(snake_t *snake);
+void print_win(snake_t *snake);
+void print_lose(snake_t *snake);
+void destroy_display(snake_t *snake);
 
 /* --- UTILS --- */
 void config_priority(char **config, char *key, int *target);

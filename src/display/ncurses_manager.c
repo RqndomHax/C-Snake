@@ -9,7 +9,7 @@
 #include <unistd.h>
 
 // Terminal display with ncurses
-int init_ncurses()
+int init_ncurses(snake_t *snake)
 {
     initscr();
     cbreak();
@@ -17,6 +17,12 @@ int init_ncurses()
     curs_set(0);
     noecho();
     keypad(stdscr, true);
+    if (snake->config.arena < COLS && snake->config.arena < LINES)
+        return (1);
+    if (COLS > LINES)
+        snake->config.arena = LINES-1;
+    else
+        snake->config.arena = COLS-1;
     return (1);
 }
 
@@ -41,6 +47,8 @@ void ncurses_display(snake_t *snake)
         snake->has_pressed = 1;
         snake->head->direction = LEFT;
     }
+    if (c != ERR && !snake->has_pressed)
+        return (ncurses_display(snake));
 
     // tickrate system with ncurses
     if (!snake->has_pressed)

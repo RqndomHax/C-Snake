@@ -58,17 +58,8 @@ void init_config(snake_t *snake)
     free_array(config);
 }
 
-int init_game(snake_t *snake)
+int init_snake(snake_t *snake)
 {
-    snake->tail = NULL;
-    snake->is_running = 1;
-    set_default_value(&snake->config.fps, 60);
-    set_default_value(&snake->config.tickrate, 12);
-    set_default_value(&snake->config.speed, 2);
-    set_default_value(&snake->config.size, 4);
-    set_default_value(&snake->config.booster, 1);
-    set_default_value(&snake->config.arena, 20);
-    set_default_value(&snake->config.does_tp, 1);
     snake->head = list_add(&snake->tail, snake->config.arena/2, snake->config.arena/2);
     if (!snake->head)
         return (0);
@@ -81,4 +72,17 @@ int init_game(snake_t *snake)
         }
     }
     return (1);
+}
+
+void init_game(snake_t *snake)
+{
+    snake->tail = NULL;
+    snake->is_running = 1;
+    set_default_value(&snake->config.fps, 60);
+    set_default_value(&snake->config.tickrate, 12);
+    set_default_value(&snake->config.speed, 2);
+    set_default_value(&snake->config.size, 4);
+    set_default_value(&snake->config.booster, 1);
+    set_default_value(&snake->config.arena, 20);
+    set_default_value(&snake->config.does_tp, 1);
 }

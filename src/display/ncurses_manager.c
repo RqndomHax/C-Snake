@@ -38,6 +38,11 @@ void ncurses_display(snake_t *snake)
 
     /* -- Directions -- */
 
+    if (c == 27) {
+        snake->is_running = 0;
+        return;
+    }
+
     // Snake up
     if (!snake->has_pressed && (c == KEY_UP && snake->head->direction != DOWN && snake->head->direction != UP)) {
         snake->has_pressed = 1;

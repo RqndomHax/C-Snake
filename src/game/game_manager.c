@@ -14,19 +14,17 @@ static int can_move(int *delay, snake_t *snake)
 {
     float seconds;
 
-    if (snake->has_pressed)
-        return (1);
     if (snake->config.display != SFML) {
-        if ((*delay)++ == snake->config.speed)
-            return (1);
         usleep(1000000/snake->config.tickrate);
-        return (0);
+        (*delay)++;
+        return (*delay >= snake->config.speed);
     }
     seconds = sfTime_asSeconds(sfClock_getElapsedTime(snake->sfml.clock));
-    if (seconds * snake->config.tickrate < 1)
-        return (0);
-    sfClock_restart(snake->sfml.clock);
-    return (1);
+    if (seconds * snake->config.tickrate >= 1) {
+        (*delay)++;
+        sfClock_restart(snake->sfml.clock);
+    }
+        return (*delay >= snake->config.speed);
 }
 
 int run_game(snake_t *snake)

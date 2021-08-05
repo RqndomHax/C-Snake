@@ -38,6 +38,7 @@ int init_sfml(snake_t *snake)
     sfRenderWindow_setMouseCursorVisible(snake->sfml.window, sfFalse);
     scale_sprite(snake->config.arena, &snake->sfml.head, &snake->sfml.headt, "assets/head.png");
     scale_sprite(snake->config.arena, &snake->sfml.tail, &snake->sfml.tailt, "assets/tail.png");
+    scale_sprite(snake->config.arena, &snake->sfml.booster, &snake->sfml.boostert, "assets/booster.png");
     sfSprite_setColor(snake->sfml.tail, sfRed);
     snake->sfml.clock = sfClock_create();
     return (1);
@@ -57,6 +58,9 @@ void print_sfml(snake_t *snake)
     }
     sfSprite_setPosition(snake->sfml.head, (sfVector2f) {(tail->x * sfTexture_getSize(snake->sfml.headt).x)/tmp, (tail->y * sfTexture_getSize(snake->sfml.headt).y)/tmp});
     sfRenderWindow_drawSprite(snake->sfml.window, snake->sfml.head, NULL);
+    tmp = sprite_get_scale(snake->config.arena, 800, sfTexture_getSize(snake->sfml.boostert).x);
+    sfSprite_setPosition(snake->sfml.booster, (sfVector2f) {(snake->booster_x * sfTexture_getSize(snake->sfml.boostert).x)/tmp, (snake->booster_y * sfTexture_getSize(snake->sfml.boostert).y)/tmp});
+    sfRenderWindow_drawSprite(snake->sfml.window, snake->sfml.booster, NULL);
     sfRenderWindow_display(snake->sfml.window);
 }
 

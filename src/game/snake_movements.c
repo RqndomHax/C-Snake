@@ -66,7 +66,7 @@ void update_coordinates(list_t *snake, config_t *config)
             break;
         case DOWN:
             snake->y++;
-            if (config->does_tp && snake->y == config->arena)
+            if (config->does_tp && snake->y >= config->arena)
                 snake->y = 1;
             break;
         case LEFT:
@@ -76,7 +76,7 @@ void update_coordinates(list_t *snake, config_t *config)
             break;
         case RIGHT:
             snake->x++;
-            if (config->does_tp && snake->x == config->arena)
+            if (config->does_tp && snake->x >= config->arena)
                 snake->x = 1;
             break;
     }

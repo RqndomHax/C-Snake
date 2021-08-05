@@ -37,9 +37,12 @@ int init_sfml(snake_t *snake)
     sfRenderWindow_setIcon(snake->sfml.window, 16, 16, sfImage_getPixelsPtr(snake->sfml.icon));
     sfRenderWindow_setMouseCursorVisible(snake->sfml.window, sfFalse);
     scale_sprite(snake->config.arena, &snake->sfml.head, &snake->sfml.headt, "assets/head.png");
-    scale_sprite(snake->config.arena, &snake->sfml.tail, &snake->sfml.tailt, "assets/tail.png");
-    scale_sprite(snake->config.arena, &snake->sfml.booster, &snake->sfml.boostert, "assets/booster.png");
+    scale_sprite(snake->config.arena, &snake->sfml.tail, &snake->sfml.tailt, "assets/head.png");
+    scale_sprite(snake->config.arena, &snake->sfml.booster, &snake->sfml.boostert, "assets/head.png");
+    scale_sprite(snake->config.arena, &snake->sfml.wall, &snake->sfml.wallt, "assets/head.png");
     sfSprite_setColor(snake->sfml.tail, sfRed);
+    sfSprite_setColor(snake->sfml.booster, sfGreen);
+    sfSprite_setColor(snake->sfml.wall, sfBlue);
     snake->sfml.clock = sfClock_create();
     return (1);
 }
@@ -50,6 +53,20 @@ void print_sfml(snake_t *snake)
     double tmp;
 
     sfRenderWindow_clear(snake->sfml.window, sfBlack);
+    tmp = sprite_get_scale(snake->config.arena, 800, sfTexture_getSize(snake->sfml.wallt).x);
+    for (int y = 0; y <= snake->config.arena; y++) {
+        for (int x = 0; x <= snake->config.arena; x++) {
+            sfSprite_setPosition(snake->sfml.wall, (sfVector2f) {(x * sfTexture_getSize(snake->sfml.wallt).x)/tmp, (y * sfTexture_getSize(snake->sfml.wallt).y)/tmp});
+            if ((x == 0 || x == snake->config.arena)) {
+                sfRenderWindow_drawSprite(snake->sfml.window, snake->sfml.wall, NULL);
+                continue;
+            }
+            if (y == 0 || y == snake->config.arena) {
+                sfRenderWindow_drawSprite(snake->sfml.window, snake->sfml.wall, NULL);
+                continue;
+            }
+        }
+    }
     tmp = sprite_get_scale(snake->config.arena, 800, sfTexture_getSize(snake->sfml.tailt).x);
     while (tail->next != NULL) {
         sfSprite_setPosition(snake->sfml.tail, (sfVector2f) {(tail->x * sfTexture_getSize(snake->sfml.tailt).x)/tmp, (tail->y * sfTexture_getSize(snake->sfml.tailt).y)/tmp});

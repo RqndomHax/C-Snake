@@ -26,9 +26,11 @@ typedef struct sfml_s
     sfRenderWindow *window;
     sfImage *icon;
     sfTexture *headt;
+    sfTexture *wallt;
     sfTexture *tailt;
     sfSprite *head;
     sfSprite *tail;
+    sfSprite *wall;
     sfTexture *boostert;
     sfSprite *booster;
     double head_result;

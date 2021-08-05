@@ -14,6 +14,8 @@ static int can_move(int *delay, snake_t *snake)
 {
     float seconds;
 
+    if (snake->config.force_move && snake->has_pressed)
+        return (1);
     if (snake->config.display != SFML) {
         usleep(1000000/snake->config.tickrate);
         (*delay)++;

@@ -23,6 +23,7 @@ void init_setup(snake_t *snake, char **argv)
     snake->config.arena = -1;
     snake->config_path = NULL;
     snake->config.does_tp = -1;
+    snake->config.force_move = -1;
     snake->argv = argv;
     snake->moves = 0;
     snake->booster_x = -1;
@@ -47,6 +48,7 @@ void init_config(snake_t *snake)
     config_priority(config, "booster", &snake->config.booster);
     config_priority(config, "arena", &snake->config.arena);
     config_priority(config, "does_tp", &snake->config.does_tp);
+    config_priority(config, "force_move", &snake->config.force_move);
     if (snake->config.display == DEFAULT) {
         tmp = my_config_get_string(config, "display");
         if (tmp != NULL) {
@@ -87,4 +89,5 @@ void init_game(snake_t *snake)
     set_default_value(&snake->config.booster, 1);
     set_default_value(&snake->config.arena, 20);
     set_default_value(&snake->config.does_tp, 1);
+    set_default_value(&snake->config.force_move, 1);
 }

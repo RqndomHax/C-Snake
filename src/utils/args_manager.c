@@ -24,18 +24,20 @@ int show_help(void)
         "  arena:       20 # This is the size of the arena (20 = 20x20)\n"
         "  display:     ncurses # This is the type of display of the game (ncurses / sfml))\n"
         "  does_tp:     1 # If set to 1 the snake is tped to the other side of the map when going through a wall, else (0) it dies."
+        "  force_move:  1 # If set to 1 when a movement key is pressed the snake will move next turn."
     
         "\n[Commands]\n"
-        "  --fps n # sets the fps cap\n"
-        "  --tickrate n # sets the game's tickrate\n"
-        "  --speed n # sets the amount of ticks it takes to move the snake\n"
-        "  --size n # sets the snake's size\n"
-        "  --booster n # sets the size multiplier\n"
-        "  --arena n # sets the arena's size\n"
-        "  --ncurses # sets the display's type to ncurse\n"
-        "  --sfml # sets the display's type to sfml\n"
-        "  --does_tp n # If set to 1 the snake is tped to the other side of the map when going through a wall, else (0) it dies."
-        
+        "  --fps        n   # sets the fps cap\n"
+        "  --tickrate   n   # sets the game's tickrate\n"
+        "  --speed      n   # sets the amount of ticks it takes to move the snake\n"
+        "  --size       n   # sets the snake's size\n"
+        "  --booster    n   # sets the size multiplier\n"
+        "  --arena      n   # sets the arena's size\n"
+        "  --ncurses        # sets the display's type to ncurse\n"
+        "  --sfml           # sets the display's type to sfml\n"
+        "  --does_tp    n   # if set to 1 the snake is tped to the other side of the map when going through a wall, else (0) it dies."        
+        "  --force_move n   # if set to 1 when a movement key is pressed the snake will move next turn."
+
         "\nCommands overwrite the parameters of the config !\n");
     return (0);
 }
@@ -72,6 +74,8 @@ int is_command(snake_t *snake, int *index)
         return (replace_value(&snake->argv[++(*index)], &snake->config.arena));
     if (strcmp(snake->argv[(*index)], "--does_tp") == 0)
         return (replace_value(&snake->argv[++(*index)], &snake->config.does_tp));
+    if (strcmp(snake->argv[(*index)], "--force_move") == 0)
+        return (replace_value(&snake->argv[++(*index)], &snake->config.force_move));
     if (strcmp(snake->argv[(*index)], "--ncurses") == 0) {
         snake->config.display = NCURSES;
         return (1);

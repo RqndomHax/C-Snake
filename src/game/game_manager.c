@@ -14,6 +14,8 @@ static int can_move(int *delay, snake_t *snake)
 {
     float seconds;
 
+    if (*delay >= snake->config.speed)
+        return (1);
     if (snake->config.force_move && snake->has_pressed)
         return (1);
     if (snake->config.display != SFML) {
@@ -26,7 +28,7 @@ static int can_move(int *delay, snake_t *snake)
         (*delay)++;
         sfClock_restart(snake->sfml.clock);
     }
-        return (*delay >= snake->config.speed);
+    return (*delay >= snake->config.speed);
 }
 
 int run_game(snake_t *snake)

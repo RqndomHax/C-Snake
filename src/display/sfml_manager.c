@@ -37,12 +37,10 @@ int init_sfml(snake_t *snake)
     sfRenderWindow_setIcon(snake->sfml.window, 16, 16, sfImage_getPixelsPtr(snake->sfml.icon));
     sfRenderWindow_setMouseCursorVisible(snake->sfml.window, sfFalse);
     scale_sprite(snake->config.arena, &snake->sfml.head, &snake->sfml.headt, "assets/head.png");
-    scale_sprite(snake->config.arena, &snake->sfml.tail, &snake->sfml.tailt, "assets/head.png");
-    scale_sprite(snake->config.arena, &snake->sfml.booster, &snake->sfml.boostert, "assets/head.png");
-    scale_sprite(snake->config.arena, &snake->sfml.wall, &snake->sfml.wallt, "assets/head.png");
-    sfSprite_setColor(snake->sfml.tail, sfRed);
-    sfSprite_setColor(snake->sfml.booster, sfGreen);
-    sfSprite_setColor(snake->sfml.wall, sfBlue);
+    scale_sprite(snake->config.arena, &snake->sfml.tail, &snake->sfml.tailt, "assets/tail.png");
+    scale_sprite(snake->config.arena, &snake->sfml.corpse, &snake->sfml.corpset, "assets/corpse.png");
+    scale_sprite(snake->config.arena, &snake->sfml.booster, &snake->sfml.boostert, "assets/booster.png");
+    scale_sprite(snake->config.arena, &snake->sfml.wall, &snake->sfml.wallt, "assets/wall.png");
     snake->sfml.clock = sfClock_create();
     return (1);
 }
@@ -68,9 +66,13 @@ void print_sfml(snake_t *snake)
         }
     }
     tmp = sprite_get_scale(snake->config.arena, 800, sfTexture_getSize(snake->sfml.tailt).x);
-    while (tail->next != NULL) {
-        sfSprite_setPosition(snake->sfml.tail, (sfVector2f) {(tail->x * sfTexture_getSize(snake->sfml.tailt).x)/tmp, (tail->y * sfTexture_getSize(snake->sfml.tailt).y)/tmp});
-        sfRenderWindow_drawSprite(snake->sfml.window, snake->sfml.tail, NULL);
+    sfSprite_setPosition(snake->sfml.tail, (sfVector2f) {(tail->x * sfTexture_getSize(snake->sfml.tailt).x)/tmp, (tail->y * sfTexture_getSize(snake->sfml.tailt).y)/tmp});
+    sfRenderWindow_drawSprite(snake->sfml.window, snake->sfml.tail, NULL);
+    tail = tail->next;
+    tmp = sprite_get_scale(snake->config.arena, 800, sfTexture_getSize(snake->sfml.corpset).x);
+    while (tail != NULL && tail->next != NULL && tail->next->next != NULL) {
+        sfSprite_setPosition(snake->sfml.corpse, (sfVector2f) {(tail->x * sfTexture_getSize(snake->sfml.corpset).x)/tmp, (tail->y * sfTexture_getSize(snake->sfml.corpset).y)/tmp});
+        sfRenderWindow_drawSprite(snake->sfml.window, snake->sfml.corpse, NULL);
         tail = tail->next;
     }
     sfSprite_setPosition(snake->sfml.head, (sfVector2f) {(tail->x * sfTexture_getSize(snake->sfml.headt).x)/tmp, (tail->y * sfTexture_getSize(snake->sfml.headt).y)/tmp});

@@ -28,7 +28,9 @@ typedef struct sfml_s
     sfTexture *headt;
     sfTexture *wallt;
     sfTexture *tailt;
+    sfTexture *corpset;
     sfSprite *head;
+    sfSprite *corpse;
     sfSprite *tail;
     sfSprite *wall;
     sfTexture *boostert;

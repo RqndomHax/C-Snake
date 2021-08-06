@@ -39,6 +39,12 @@ make
 ./c_snake --tickrate 250 --speed 23 --size 2
 ```
 
+### Notes
+
+- __To avoid any textures issue please use the same texture size !__
+- Config is overwritten by the command arguments.
+- If you're using SFML display and the tickrate changes nothing it's maybe because your fps cap is too low.
+
 ### Have fun playing my game !
 
 ###### Made with ❤️ by RqndomHax

@@ -47,3 +47,12 @@ void print_ncurses(snake_t *snake)
         addch('?');
     refresh();
 }
+
+void print_debug(void)
+{
+    clear();
+    addch('h');
+    addch('e');
+    addch('y');
+    refresh();
+}

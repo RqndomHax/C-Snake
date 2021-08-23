@@ -24,6 +24,7 @@ typedef struct snake_s
     int booster_x;
     int booster_y;
     int has_pressed;
+    clock_t start;
     sfml_t sfml;
 }snake_t;
 
